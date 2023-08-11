@@ -10,6 +10,27 @@ import { textChangeRangeIsUnchanged } from 'typescript';
 class Login extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            username: '',
+            password: '',
+            show: false
+        }
+    }
+
+    handleOnChangeInput = (event, key) => {
+        this.setState({
+            [key]: event.target.value
+        });
+    }
+
+    handleLogin = () => {
+        console.log(this.state);
+    }
+
+    handleShowPassword = () => {
+        this.setState({
+            show: !this.state.show
+        })
     }
 
     render() {
@@ -21,14 +42,21 @@ class Login extends Component {
                         <div className='col-12 text-center form-title'>Login</div>
                         <div className='form-group'>
                             <label>Username</label>
-                            <input type='text' className='form-control login-input' placeholder='Enter your username' />
+                            <input type='text' className='form-control login-input' placeholder='Enter your username'
+                                value={this.state.username}
+                                onChange={(event) => this.handleOnChangeInput(event, 'username')} />
                         </div>
                         <div className='form-group'>
                             <label>Password</label>
-                            <input type='password' className='form-control login-input' placeholder='Enter password' />
+                            <input type={this.state.show ? 'text' : 'password'} className='form-control login-input' placeholder='Enter password'
+                                value={this.state.password}
+                                onChange={(event) => this.handleOnChangeInput(event, 'password')} />
+                            <i className={this.state.show ? "fas fa-eye-slash show-password" : "fas fa-eye show-password"} onClick={() => this.handleShowPassword()}></i>
                         </div>
                         <div className='col-12'>
-                            <button className='btn-login'>Login</button>
+                            <button className='btn-login' onClick={() => {
+                                this.handleLogin()
+                            }}>Login</button>
                         </div>
                         <div className='col-12'>
                             <span className='forgot-password'>Forgot password?</span>
@@ -37,8 +65,8 @@ class Login extends Component {
                             Or login with:
                         </div>
                         <div className='social-login'>
-                            <i class="fab fa-google google"></i>
-                            <i class="fab fa-facebook-f facebook"></i>
+                            <i className="fab fa-google google"></i>
+                            <i className="fab fa-facebook-f facebook"></i>
                         </div>
                     </div>
                 </div>

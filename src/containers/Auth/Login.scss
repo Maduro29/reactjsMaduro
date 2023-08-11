@@ -4,11 +4,16 @@
 
     .login-container {
         width: 400px;
-        height: 100%;
-        margin: 0 auto;
+        height: 450px;
+        margin: auto;
         background: white;
+        position: absolute;
         border: none;
         border-radius: 15px;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
 
         .login-content {
             padding: 10px;
@@ -20,6 +25,13 @@
 
             .login-input {
                 margin: 7px 0;
+            }
+
+            .show-password {
+                position: absolute;
+                right: 18px;
+                top: 152px;
+                cursor: pointer;
             }
 
             .btn-login {
