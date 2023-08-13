@@ -4,6 +4,7 @@ import { push } from "connected-react-router";
 
 import * as actions from "../../store/actions";
 import './Login.scss';
+import { handleLogin } from '../../services/userService';
 import { FormattedMessage } from 'react-intl';
 import { textChangeRangeIsUnchanged } from 'typescript';
 
@@ -13,7 +14,8 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
-            show: false
+            show: false,
+            message: ''
         }
     }
 
@@ -23,8 +25,17 @@ class Login extends Component {
         });
     }
 
-    handleLogin = () => {
-        console.log(this.state);
+    handleLogin = async () => {
+        this.setState({
+            message: ''
+        })
+        try {
+            let data = await handleLogin(this.state.username, this.state.password);
+            // console.log(data)
+            this.props.userLoginSuccess(data.data.data.user)
+        } catch (e) {
+            this.setState({ message: e.response.data.data.message })
+        }
     }
 
     handleShowPassword = () => {
@@ -32,6 +43,7 @@ class Login extends Component {
             show: !this.state.show
         })
     }
+
 
     render() {
 
@@ -52,6 +64,9 @@ class Login extends Component {
                                 value={this.state.password}
                                 onChange={(event) => this.handleOnChangeInput(event, 'password')} />
                             <i className={this.state.show ? "fas fa-eye-slash show-password" : "fas fa-eye show-password"} onClick={() => this.handleShowPassword()}></i>
+                        </div>
+                        <div className='col-12' style={{ color: 'red' }}>
+                            {this.state.message}
                         </div>
                         <div className='col-12'>
                             <button className='btn-login' onClick={() => {
@@ -84,8 +99,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
-        adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
-        adminLoginFail: () => dispatch(actions.adminLoginFail()),
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
+        userLoginFail: () => dispatch(actions.userLoginFail()),
     };
 };
 
