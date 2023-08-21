@@ -6,4 +6,8 @@ const handleLogin = (email, password) => {
     });
 }
 
-export { handleLogin };
+const getUsers = (id) => {
+    return axios.get(`/api/get-user?id=${id}`)
+}
+
+export { handleLogin, getUsers };
