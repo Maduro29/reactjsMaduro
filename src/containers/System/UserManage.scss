@@ -3,6 +3,11 @@ table {
     border-collapse: collapse;
     width: 100%;
 
+    button {
+        outline: none;
+        border: none;
+    }
+
     .btn-edit {
         color: #d47e0f;
         font-size: 18px;
@@ -26,6 +31,41 @@ table {
             color: #d40f0f95;
             background: transparent;
             cursor: pointer;
+        }
+    }
+}
+
+.modal-header {
+    button {
+        color: white;
+        background-color: transparent;
+        border: none;
+        font-size: 27px;
+    }
+}
+
+.modal-user-container {
+    .modal-user-body {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+
+        .input-container {
+            width: 49%;
+            display: flex;
+            flex-direction: column;
+
+            input {
+                outline: none;
+                border: 0.5px solid #ccc;
+                border-radius: 5px;
+                padding: 0 5px;
+                height: 36px;
+            }
+        }
+
+        .input-full {
+            width: 100%;
         }
     }
 }

@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { getUsers } from '../../services/userService';
 import './UserManage.scss'
+import ModalUser from './ModalUser';
 
 class UserManage extends Component {
 
@@ -10,6 +11,7 @@ class UserManage extends Component {
         super(props);
         this.state = {
             users: [],
+            isOpenModal: false
         }
     }
 
@@ -22,11 +24,25 @@ class UserManage extends Component {
         }
     }
 
+    toggleParent() {
+        this.setState({
+            isOpenModal: !this.state.isOpenModal
+        })
+    }
+
 
     render() {
         return (
             <div className="user-container row">
+                <ModalUser isOpen={this.state.isOpenModal} toggle={() => this.toggleParent()} />
                 <div className="title text-center">Manage users</div>
+                <div className="m-1">
+                    <button className="btn btn-primary px-3"
+                        onClick={() => this.toggleParent()}>
+                        <i className="fas fa-plus"></i>&nbsp;
+                        Add new user
+                    </button>
+                </div>
                 <div className="user-table col-12">
                     <table>
                         <tr>
@@ -45,8 +61,12 @@ class UserManage extends Component {
                                         <td>{user.lastName}</td>
                                         <td>{user.address}</td>
                                         <td>
-                                            <i className='fas fa-edit mr-3 btn-edit'></i>
-                                            <i className='fas fa-trash btn-delete'></i>
+                                            <button className='mr-3 btn-edit'>
+                                                <i className='fas fa-edit'></i>
+                                            </button>
+                                            <button className='btn-delete'>
+                                                <i className='fas fa-trash'></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 </>
