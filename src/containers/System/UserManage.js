@@ -16,6 +16,10 @@ class UserManage extends Component {
     }
 
     async componentDidMount() {
+        await this.fetchAllUsers();
+    }
+
+    async fetchAllUsers() {
         let res = await getUsers('ALL');
         if (res && res.data && res.data.data) {
             this.setState({
@@ -30,11 +34,15 @@ class UserManage extends Component {
         })
     }
 
+    updateNewUser() {
+        this.fetchAllUsers();
+    }
 
     render() {
         return (
             <div className="user-container row">
-                <ModalUser isOpen={this.state.isOpenModal} toggle={() => this.toggleParent()} />
+                <ModalUser isOpen={this.state.isOpenModal} toggle={() => this.toggleParent()}
+                    updateNewUser={() => this.updateNewUser()} />
                 <div className="title text-center">Manage users</div>
                 <div className="m-1">
                     <button className="btn btn-primary px-3"
