@@ -30,6 +30,16 @@ class ModalUser extends Component {
         })
     }
 
+    clearState() {
+        this.setState({
+            email: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            address: ''
+        })
+    }
+
     checkValidUser() {
         let arrKey = ['email', 'password', 'firstName', 'lastName', 'address'];
         let key = ['email', 'password', 'first name', 'last name', 'address'];
@@ -44,15 +54,20 @@ class ModalUser extends Component {
 
     handleAddNew() {
         if (this.checkValidUser()) {
-            let result = addNewUser(this.state);
-            result.then(data => {
-                let response = data.data
-                if (response.errCode != 0) {
-                    alert(`${response.message}`)
-                } else {
-                    this.props.updateNewUser();
-                }
-            })
+            try {
+                let result = addNewUser(this.state);
+                result.then(async data => {
+                    let response = data.data
+                    if (response.errCode != 0) {
+                        alert(`${response.message}`)
+                    } else {
+                        await this.props.update();
+                        this.clearState();
+                    }
+                })
+            } catch (e) {
+                console.error(e);
+            }
         }
     }
 

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { getUsers } from '../../services/userService';
+import { getUsers, deleteUser } from '../../services/userService';
 import './UserManage.scss'
 import ModalUser from './ModalUser';
+import { emitter } from '../../utils/emitter';
 
 class UserManage extends Component {
 
@@ -34,15 +35,29 @@ class UserManage extends Component {
         })
     }
 
-    updateNewUser() {
-        this.fetchAllUsers();
+    async update() {
+        await this.fetchAllUsers();
+    }
+
+    async handleDelete(user) {
+        try {
+            let response = await deleteUser({ id: user.id });
+            console.log(response);
+            if (response && response.data && response.data.errCode != 0) {
+                alert(`${response.data.message}`)
+            } else {
+                this.update();
+            }
+        } catch (e) {
+            console.error(e)
+        }
     }
 
     render() {
         return (
             <div className="user-container row">
                 <ModalUser isOpen={this.state.isOpenModal} toggle={() => this.toggleParent()}
-                    updateNewUser={() => this.updateNewUser()} />
+                    update={() => this.update()} />
                 <div className="title text-center">Manage users</div>
                 <div className="m-1">
                     <button className="btn btn-primary px-3"
@@ -72,7 +87,7 @@ class UserManage extends Component {
                                             <button className='mr-3 btn-edit'>
                                                 <i className='fas fa-edit'></i>
                                             </button>
-                                            <button className='btn-delete'>
+                                            <button className='btn-delete' onClick={() => this.handleDelete(user)}>
                                                 <i className='fas fa-trash'></i>
                                             </button>
                                         </td>
