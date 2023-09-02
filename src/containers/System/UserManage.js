@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getUsers, deleteUser } from '../../services/userService';
 import './UserManage.scss'
 import ModalUser from './ModalUser';
+import ModalEditUser from './ModalEditUser';
 import { emitter } from '../../utils/emitter';
 
 class UserManage extends Component {
@@ -12,7 +13,9 @@ class UserManage extends Component {
         super(props);
         this.state = {
             users: [],
-            isOpenModal: false
+            isOpenModal: false,
+            isOpenEditModal: false,
+            editingUser: {}
         }
     }
 
@@ -53,11 +56,28 @@ class UserManage extends Component {
         }
     }
 
+    toggleEdit() {
+        this.setState({
+            isOpenEditModal: !this.state.isOpenEditModal
+        })
+    }
+
+    handleEdit(user) {
+        this.toggleEdit();
+        console.log(user);
+        this.setState({
+            editingUser: user
+        })
+    }
+
     render() {
         return (
             <div className="user-container row">
                 <ModalUser isOpen={this.state.isOpenModal} toggle={() => this.toggleParent()}
                     update={() => this.update()} />
+                {this.state.isOpenEditModal &&
+                    <ModalEditUser isOpen={this.state.isOpenEditModal} toggle={() => this.toggleEdit()}
+                        user={this.state.editingUser} update={() => this.update()} />}
                 <div className="title text-center">Manage users</div>
                 <div className="m-1">
                     <button className="btn btn-primary px-3"
@@ -84,7 +104,7 @@ class UserManage extends Component {
                                         <td>{user.lastName}</td>
                                         <td>{user.address}</td>
                                         <td>
-                                            <button className='mr-3 btn-edit'>
+                                            <button className='mr-3 btn-edit' onClick={() => this.handleEdit(user)}>
                                                 <i className='fas fa-edit'></i>
                                             </button>
                                             <button className='btn-delete' onClick={() => this.handleDelete(user)}>

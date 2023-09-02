@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { addNewUser } from '../../services/userService';
+import { editUser } from '../../services/userService';
 import { add } from 'lodash';
-class ModalUser extends Component {
+class ModalEditUser extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
+            email: this.props.user.email,
             password: '',
-            firstName: '',
-            lastName: '',
-            address: ''
+            firstName: this.props.user.firstName,
+            lastName: this.props.user.lastName,
+            address: this.props.user.address
         }
     }
 
@@ -30,19 +30,9 @@ class ModalUser extends Component {
         })
     }
 
-    clearState() {
-        this.setState({
-            email: '',
-            password: '',
-            firstName: '',
-            lastName: '',
-            address: ''
-        })
-    }
-
     checkValidUser() {
-        let arrKey = ['email', 'password', 'firstName', 'lastName', 'address'];
-        let key = ['email', 'password', 'first name', 'last name', 'address'];
+        let arrKey = ['firstName', 'lastName', 'address'];
+        let key = ['first name', 'last name', 'address'];
         for (let i in arrKey) {
             if (!this.state[arrKey[i]]) {
                 alert(`Missing ${key[i]}`);
@@ -52,17 +42,19 @@ class ModalUser extends Component {
         return true;
     }
 
-    handleAddNew() {
+    handleEdit() {
         if (this.checkValidUser()) {
             try {
-                let result = addNewUser(this.state);
+                let result = editUser({
+                    ...this.state,
+                    id: this.props.user.id,
+                });
                 result.then(async data => {
                     let response = data.data
                     if (response.errCode != 0) {
                         alert(`${response.message}`)
                     } else {
                         await this.props.update();
-                        this.clearState();
                     }
                 })
             } catch (e) {
@@ -75,18 +67,18 @@ class ModalUser extends Component {
         return (
             <div className="text-center" >
                 <Modal isOpen={this.props.isOpen} toggle={() => this.toggle()} className="modal-user-container" centered size='lg'>
-                    <ModalHeader toggle={() => this.toggle()}>Add a new user</ModalHeader>
+                    <ModalHeader toggle={() => this.toggle()}>Edit user</ModalHeader>
                     <ModalBody>
                         <div className='modal-user-body'>
                             <div className='input-container'>
                                 <label>Email</label>
                                 <input type="email" name="email" onChange={(e) => this.handleInputChange(e)}
-                                    value={this.state.email} />
+                                    value={this.state.email} disabled />
                             </div>
                             <div className='input-container'>
                                 <label>Password</label>
                                 <input type="password" name="password" onChange={(e) => this.handleInputChange(e)}
-                                    value={this.state.password} />
+                                    value={this.state.password} disabled />
                             </div>
                             <div className='input-container'>
                                 <label>First Name</label>
@@ -107,7 +99,7 @@ class ModalUser extends Component {
 
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" className='px-5' onClick={() => { this.toggle(); this.handleAddNew() }}>Add Users</Button>{' '}
+                        <Button color="primary" className='px-5' onClick={() => { this.toggle(); this.handleEdit() }}>Edit</Button>{' '}
                         <Button color="secondary" className='px-5' onClick={() => this.toggle()}>Close</Button>
                     </ModalFooter>
                 </Modal></div>
@@ -126,4 +118,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalUser);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalEditUser);

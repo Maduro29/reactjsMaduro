@@ -20,4 +20,8 @@ const deleteUser = (id) => {
     })
 }
 
-export { handleLogin, getUsers, addNewUser, deleteUser };
+const editUser = (user) => {
+    return axios.put('/api/edit-user', user)
+}
+
+export { handleLogin, getUsers, addNewUser, deleteUser, editUser };
