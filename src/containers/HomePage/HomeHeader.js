@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './HomeHeader.scss';
 import { FormattedMessage } from 'react-intl';
+import { LANGUAGES } from '../../utils';
+import { changeLanguageApp } from '../../store/actions';
 
 class HomeHeader extends Component {
 
-    render() {
-        console.log('a', <FormattedMessage id="banner.search" />);
+    changeLanguage = (language) => {
+        this.props.changeLanguageAppRedux(language);
+    }
 
+    render() {
         return (
             <>
                 <div className='homeheader-container'>
@@ -55,8 +59,12 @@ class HomeHeader extends Component {
                                     <FormattedMessage id="homeheader.support" /></div>
                             </div>
                             <div className='language'>
-                                <div className='language-vi'>VN</div>
-                                <div className='language-en'>EN</div>
+                                <div className={this.props.language === 'vi' ? 'language-vi active' : 'language-vi'}>
+                                    <span onClick={() => this.changeLanguage('vi')}>{LANGUAGES.VI}</span>
+                                </div>
+                                <div className={this.props.language === 'en' ? 'language-en active' : 'language-en'}>
+                                    <span onClick={() => this.changeLanguage('en')}>{LANGUAGES.EN}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -156,7 +164,6 @@ class HomeHeader extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state.app);
     return {
         isLoggedIn: state.user.isLoggedIn,
         language: state.app.language
@@ -165,6 +172,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language))
     };
 };
 

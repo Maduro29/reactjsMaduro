@@ -6,9 +6,9 @@ export const path = {
     HOME_PAGE: '/home'
 };
 
-export const languages = {
-    VI: 'vi',
-    EN: 'en'
+export const LANGUAGES = {
+    VI: 'VI',
+    EN: 'EN'
 };
 
 export const manageActions = {
