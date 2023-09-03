@@ -35,8 +35,14 @@ class HomeHeader extends Component {
                             </div>
                         </div>
                         <div className='third-content'>
-                            <i className="fas fa-question"></i>
-                            <div className='support'>Hỗ trợ</div>
+                            <div className='support'>
+                                <i className="fas fa-question"></i>
+                                <div className='support-text'>Hỗ trợ</div>
+                            </div>
+                            <div className='language'>
+                                <div className='language-vi'>VN</div>
+                                <div className='language-en'>EN</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -58,49 +64,49 @@ class HomeHeader extends Component {
                         </div>
                         <div className='option'>
                             <div className='option-item'>
-                                <i class="fas fa-mobile"></i>
+                                <i className="fas fa-mobile"></i>
                             </div>
                             <div className='option-text'>Khám từ xa</div>
                         </div>
                         <div className='option'>
                             <div className='option-item'>
-                                <i class="fas fa-clipboard"></i>
+                                <i className="fas fa-clipboard"></i>
                             </div>
                             <div className='option-text'>Khám tổng quát</div>
                         </div>
                         <div className='option'>
                             <div className='option-item'>
-                                <i class="fas fa-vial"></i>
+                                <i className="fas fa-vial"></i>
                             </div>
                             <div className='option-text'>Xét nghiệm y học</div>
                         </div>
                         <div className='option'>
                             <div className='option-item'>
-                                <i class="fas fa-procedures"></i>
+                                <i className="fas fa-procedures"></i>
                             </div>
                             <div className='option-text'>Sức khỏe tinh thần</div>
                         </div>
                         <div className='option'>
                             <div className='option-item'>
-                                <i class="fas fa-utensils"></i>
+                                <i className="fas fa-utensils"></i>
                             </div>
                             <div className='option-text'>Khám nha khoa</div>
                         </div>
                         <div className='option'>
                             <div className='option-item'>
-                                <i class="fas fa-cut"></i>
+                                <i className="fas fa-cut"></i>
                             </div>
                             <div className='option-text'>Gói phẫu thuật</div>
                         </div>
                         <div className='option'>
                             <div className='option-item'>
-                                <i class="fas fa-superscript"></i>
+                                <i className="fas fa-superscript"></i>
                             </div>
                             <div className='option-text'>Bài test sức khỏe</div>
                         </div>
                         <div className='option'>
                             <div className='option-item'>
-                                <i class="fas fa-h-square"></i>
+                                <i className="fas fa-h-square"></i>
                             </div>
                             <div className='option-text'>Y tế gần bạn</div>
                         </div>
