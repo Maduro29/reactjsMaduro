@@ -1,4 +1,29 @@
 {
+    "homeheader": {
+        "specialty": "Speacialties",
+        "specialtyfind": "Find doctors by speacialties",
+        "facility": "Medical facilities",
+        "facilityfind": "Find hospitals/clinics",
+        "doctor": "Doctors",
+        "doctorfind": "Find expert doctors",
+        "package": "Examination package",
+        "generalpackage": "General examination",
+        "support": "Support"
+    },
+    "banner": {
+        "firsttext": "MEDICAL BACKGROUND",
+        "secondtext": "GENERAL HEALTH CARE",
+        "search": "Search",
+        "option1": "Special examination",
+        "option2": "Remote examination",
+        "option3": "General examination",
+        "option4": "Medical test",
+        "option5": "Mental health",
+        "option6": "Dental examination",
+        "option7": "Surgery package",
+        "option8": "Health test",
+        "option9": "Nearest medical"
+    },
     "common": {
         "add": "Add",
         "edit": "Edit",

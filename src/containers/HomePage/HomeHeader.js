@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './HomeHeader.scss';
+import { FormattedMessage } from 'react-intl';
 
 class HomeHeader extends Component {
 
     render() {
+        console.log('a', <FormattedMessage id="banner.search" />);
 
         return (
             <>
@@ -18,26 +20,39 @@ class HomeHeader extends Component {
                         </div>
                         <div className='second-content'>
                             <div className='child-content'>
-                                <div className='first-child-content'><b>Chuyên khoa</b></div>
-                                <div className='second-child-content'>Tìm theo bác sĩ chuyên khoa</div>
+                                <div className='first-child-content'><b>
+                                    <FormattedMessage id="homeheader.specialty" /></b></div>
+                                <div className='second-child-content'>
+                                    <FormattedMessage id="homeheader.specialtyfind" />
+                                </div>
                             </div>
                             <div className='child-content'>
-                                <div className='first-child-content'><b>Cơ sở y tế</b></div>
-                                <div className='second-child-content'>Chọn bệnh viện phòng khám</div>
+                                <div className='first-child-content'><b>
+                                    <FormattedMessage id="homeheader.facility" /></b></div>
+                                <div className='second-child-content'>
+                                    <FormattedMessage id="homeheader.facilityfind" />
+                                </div>
                             </div>
                             <div className='child-content'>
-                                <div className='first-child-content'><b>Bác sĩ</b></div>
-                                <div className='second-child-content'>Chọn bác sĩ giỏi</div>
+                                <div className='first-child-content'><b>
+                                    <FormattedMessage id="homeheader.doctor" /></b></div>
+                                <div className='second-child-content'>
+                                    <FormattedMessage id="homeheader.doctorfind" />
+                                </div>
                             </div>
                             <div className='child-content'>
-                                <div className='first-child-content'><b>Gói khám</b></div>
-                                <div className='second-child-content'>Khám sức khỏe tổng quát</div>
+                                <div className='first-child-content'><b>
+                                    <FormattedMessage id="homeheader.package" /></b></div>
+                                <div className='second-child-content'>
+                                    <FormattedMessage id="homeheader.generalpackage" />
+                                </div>
                             </div>
                         </div>
                         <div className='third-content'>
                             <div className='support'>
                                 <i className="fas fa-question"></i>
-                                <div className='support-text'>Hỗ trợ</div>
+                                <div className='support-text'>
+                                    <FormattedMessage id="homeheader.support" /></div>
                             </div>
                             <div className='language'>
                                 <div className='language-vi'>VN</div>
@@ -48,11 +63,15 @@ class HomeHeader extends Component {
                 </div>
                 <div className='homeheader-banner'>
                     <div className='first-banner-content'>
-                        <div className='first-text'>NỀN TẢNG Y TẾ</div>
-                        <div className='second-text'>CHĂM SÓC SỨC KHỎE TOÀN DIỆN</div>
+                        <div className='first-text'>
+                            <FormattedMessage id="banner.firsttext" />
+                        </div>
+                        <div className='second-text'>
+                            <FormattedMessage id="banner.secondtext" />
+                        </div>
                         <div className='search'>
                             <i className="fas fa-search"></i>
-                            <input className='input-search' type='text' placeholder='Tìm kiếm' />
+                            <input className='input-search' type='text' placeholder="Tìm kiếm/Search" />
                         </div>
                     </div>
                     <div className='second-banner-content'>
@@ -60,55 +79,73 @@ class HomeHeader extends Component {
                             <div className='option-item'>
                                 <i className="fas fa-hospital"></i>
                             </div>
-                            <div className='option-text'>Khám chuyên khoa</div>
+                            <div className='option-text'>
+                                <FormattedMessage id="banner.option1" />
+                            </div>
                         </div>
                         <div className='option'>
                             <div className='option-item'>
                                 <i className="fas fa-mobile"></i>
                             </div>
-                            <div className='option-text'>Khám từ xa</div>
+                            <div className='option-text'>
+                                <FormattedMessage id="banner.option2" />
+                            </div>
                         </div>
                         <div className='option'>
                             <div className='option-item'>
                                 <i className="fas fa-clipboard"></i>
                             </div>
-                            <div className='option-text'>Khám tổng quát</div>
+                            <div className='option-text'>
+                                <FormattedMessage id="banner.option3" />
+                            </div>
                         </div>
                         <div className='option'>
                             <div className='option-item'>
                                 <i className="fas fa-vial"></i>
                             </div>
-                            <div className='option-text'>Xét nghiệm y học</div>
+                            <div className='option-text'>
+                                <FormattedMessage id="banner.option4" />
+                            </div>
                         </div>
                         <div className='option'>
                             <div className='option-item'>
                                 <i className="fas fa-procedures"></i>
                             </div>
-                            <div className='option-text'>Sức khỏe tinh thần</div>
+                            <div className='option-text'>
+                                <FormattedMessage id="banner.option5" />
+                            </div>
                         </div>
                         <div className='option'>
                             <div className='option-item'>
                                 <i className="fas fa-utensils"></i>
                             </div>
-                            <div className='option-text'>Khám nha khoa</div>
+                            <div className='option-text'>
+                                <FormattedMessage id="banner.option6" />
+                            </div>
                         </div>
                         <div className='option'>
                             <div className='option-item'>
                                 <i className="fas fa-cut"></i>
                             </div>
-                            <div className='option-text'>Gói phẫu thuật</div>
+                            <div className='option-text'>
+                                <FormattedMessage id="banner.option7" />
+                            </div>
                         </div>
                         <div className='option'>
                             <div className='option-item'>
                                 <i className="fas fa-superscript"></i>
                             </div>
-                            <div className='option-text'>Bài test sức khỏe</div>
+                            <div className='option-text'>
+                                <FormattedMessage id="banner.option8" />
+                            </div>
                         </div>
                         <div className='option'>
                             <div className='option-item'>
                                 <i className="fas fa-h-square"></i>
                             </div>
-                            <div className='option-text'>Y tế gần bạn</div>
+                            <div className='option-text'>
+                                <FormattedMessage id="banner.option9" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -119,8 +156,10 @@ class HomeHeader extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log(state.app);
     return {
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+        language: state.app.language
     };
 };
 
