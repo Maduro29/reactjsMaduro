@@ -8,6 +8,7 @@ import Tip from './Section/Tip';
 import './HomePage.scss'
 import "../../../node_modules/slick-carousel/slick/slick.scss";
 import "../../../node_modules/slick-carousel/slick/slick-theme.scss";
+import HomeFooter from './HomeFooter';
 
 class HomePage extends Component {
 
@@ -27,6 +28,7 @@ class HomePage extends Component {
                 <MedicalFacility settings={settings} />
                 <OutstandingDoctor settings={settings} />
                 <Tip settings={settings} />
+                <HomeFooter />
             </div>
         );
     }
