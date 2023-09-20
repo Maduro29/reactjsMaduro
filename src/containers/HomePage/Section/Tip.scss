@@ -1,0 +1,19 @@
+.tip-container {
+    .tip-content {
+        background-color: #f0efef;
+
+        .slide {
+            .slide-item {
+                .tip-item {
+                    background: url('../../../assets/images/Tip/img1.jpg');
+                    background-color: #fbf7f7;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center;
+                }
+            }
+
+        }
+
+    }
+}

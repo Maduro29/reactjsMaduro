@@ -1,0 +1,29 @@
+.doctor-container {
+    .doctor-content {
+        background-color: #fbf7f7;
+
+        .slide {
+            .slide-item {
+                .section-item {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    .doctor-item {
+                        margin: 20px 0;
+                        border-radius: 100px;
+                        background: url('../../../assets/images/Doctor/img1.png');
+                        height: 120px !important;
+                        width: 120px !important;
+                        background-color: #f0efef;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: center;
+                    }
+                }
+            }
+
+        }
+
+    }
+}
